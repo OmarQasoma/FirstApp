@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,11 +11,11 @@
     <!-- Logo liten -->
     <ImageView
         android:id="@+id/imgLogoGame"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/logo_hogre_lagre"
+        android:layout_width="311dp"
+        android:layout_height="211dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="@string/app_name"
-        android:layout_marginBottom="8dp" />
+        android:src="@drawable/logo_hogre_lagre" />
 
     <!-- Titel -->
     <TextView
@@ -27,14 +28,15 @@
         android:paddingBottom="4dp" />
 
     <!-- Info-text -->
-    <TextView
-        android:id="@+id/tvInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Gissa om nästa kort blir högre eller lägre."
-        android:paddingBottom="24dp" />
 
     <!-- Kort-text -->
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="350dp"
+        android:layout_height="75dp"
+        android:paddingBottom="24dp"
+        android:text="Gissa om nästa kort blir högre eller lägre." />
+
     <TextView
         android:id="@+id/tvCurrentCard"
         android:layout_width="wrap_content"
@@ -57,10 +59,9 @@
         android:id="@+id/imgCorrect"
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:src="@drawable/logo_hogre_lagre"
-        android:contentDescription="Rätt!"
-        android:visibility="gone"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        android:background="#73638E"
+        android:visibility="gone" />
 
     <!-- Knappar -->
     <LinearLayout

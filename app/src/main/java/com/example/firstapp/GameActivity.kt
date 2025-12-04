@@ -97,7 +97,7 @@ class GameActivity : AppCompatActivity() {
         if (guessIsCorrect) {
             score++
             imgCorrect.visibility = View.VISIBLE
-            Toast.makeText(this, "Rätt! 🎉", Toast.LENGTH_SHORT).show()
+            //      Toast.makeText(this, "Rätt! 🎉", Toast.LENGTH_SHORT).show()
             updateScoreText()
             updateCardText()
         } else {
