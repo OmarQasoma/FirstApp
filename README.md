@@ -25,6 +25,7 @@ App idé
 - Titel: **Högre eller Lägre**
 - Kort beskrivning av spelet
 - Knapp: **Starta spelet**
+- skiss_main.png
 
 ### 2. Spelskärm (GameActivity)
 
@@ -36,6 +37,7 @@ App idé
   - **Högre**
   - **Lägre**
 - En liten bild/ikon som visas när användaren gissar rätt.
+- skiss_game.png
 
 ## Användarperspektiv (kort motivering)
 
