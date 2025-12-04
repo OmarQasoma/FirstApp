@@ -1,20 +1,21 @@
 package com.example.firstapp
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
-// 4 أنواع الكروت (suits)
 enum class Suit {
     HEARTS, DIAMONDS, CLUBS, SPADES
 }
 
-// كرت واحد: قيمة + نوع
 data class Card(
-    val value: Int,   // 1..13
-    val suit: Suit    // Hearts, Diamonds, Clubs, Spades
+    val value: Int,
+    val suit: Suit
 )
 
 class GameActivity : AppCompatActivity() {
@@ -23,6 +24,7 @@ class GameActivity : AppCompatActivity() {
     private lateinit var tvScore: TextView
     private lateinit var btnHigher: Button
     private lateinit var btnLower: Button
+    private lateinit var imgCorrect: ImageView
 
     private var deck: MutableList<Card> = mutableListOf()
     private var currentIndex = 0
@@ -33,29 +35,26 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        // ربط عناصر الواجهة
         tvCurrentCard = findViewById(R.id.tvCurrentCard)
         tvScore = findViewById(R.id.tvScore)
         btnHigher = findViewById(R.id.btnHigher)
         btnLower = findViewById(R.id.btnLower)
+        imgCorrect = findViewById(R.id.imgCorrect)
 
-        // نبدأ لعبة جديدة
+        imgCorrect.visibility = View.GONE
+
         startNewGame()
 
-        // زر "Högre"
         btnHigher.setOnClickListener {
             handleGuess(isHigher = true)
         }
 
-        // زر "Lägre"
         btnLower.setOnClickListener {
             handleGuess(isHigher = false)
         }
     }
 
-    // تحضير deck جديد (52 كرت) وبدء اللعبة من أول كرت
     private fun startNewGame() {
-        // نبني deck
         deck = mutableListOf()
         val suits = Suit.values()
         for (suit in suits) {
@@ -64,33 +63,31 @@ class GameActivity : AppCompatActivity() {
             }
         }
 
-        deck.shuffle() // نخلط الكروت
+        deck.shuffle()
 
         score = 0
         currentIndex = 0
         currentCard = deck[currentIndex]
 
+        imgCorrect.visibility = View.GONE
+
         updateScoreText()
         updateCardText()
     }
 
-    // لما اللاعب يختار Högre أو Lägre
     private fun handleGuess(isHigher: Boolean) {
         val previousCard = currentCard ?: return
 
-        // لو وصلنا لنهاية deck نعيد اللعبة
         if (currentIndex >= deck.size - 1) {
             Toast.makeText(this, "Inga fler kort. Spelet startar om.", Toast.LENGTH_SHORT).show()
             startNewGame()
             return
         }
 
-        // نسحب الكرت التالي
         currentIndex++
         val nextCard = deck[currentIndex]
         currentCard = nextCard
 
-        // نتحقق من صحة التخمين (نقارن القيم فقط)
         val guessIsCorrect = if (isHigher) {
             nextCard.value > previousCard.value
         } else {
@@ -99,17 +96,29 @@ class GameActivity : AppCompatActivity() {
 
         if (guessIsCorrect) {
             score++
+            imgCorrect.visibility = View.VISIBLE
             Toast.makeText(this, "Rätt! 🎉", Toast.LENGTH_SHORT).show()
+            updateScoreText()
+            updateCardText()
         } else {
-            Toast.makeText(this, "Fel! Poängen nollställs.", Toast.LENGTH_SHORT).show()
-            score = 0
+            imgCorrect.visibility = View.GONE
+            showGameOverDialog()
         }
-
-        updateScoreText()
-        updateCardText()
     }
 
-    // تحديث نص الكرت على الشاشة
+    private fun showGameOverDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Fel!")
+            .setMessage("Din gissning var fel.\nVill du spela igen? Poängen nollställs.")
+            .setPositiveButton("Ja") { _, _ ->
+                startNewGame()
+            }
+            .setNegativeButton("Nej") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
     private fun updateCardText() {
         val card = currentCard ?: return
         val valueText = when (card.value) {
@@ -130,7 +139,6 @@ class GameActivity : AppCompatActivity() {
         tvCurrentCard.text = "Kort: $valueText $suitSymbol"
     }
 
-    // تحديث نص السكور
     private fun updateScoreText() {
         tvScore.text = "Poäng: $score"
     }

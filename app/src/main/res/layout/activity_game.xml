@@ -4,9 +4,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:background="#FFFFFF">
 
-    <!-- عنوان الشاشة -->
+    <!-- Logo liten -->
+    <ImageView
+        android:id="@+id/imgLogoGame"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/logo_hogre_lagre"
+        android:contentDescription="@string/app_name"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Titel -->
     <TextView
         android:id="@+id/tvGameTitle"
         android:layout_width="wrap_content"
@@ -14,55 +24,62 @@
         android:text="Högre eller Lägre"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:paddingBottom="16dp" />
+        android:paddingBottom="4dp" />
 
-    <!-- النص التوضيحي -->
+    <!-- Info-text -->
     <TextView
         android:id="@+id/tvInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Gissa om nästa kort blir högre eller lägre."
-        android:textSize="16sp"
         android:paddingBottom="24dp" />
 
-    <!-- الكرت الحالي -->
+    <!-- Kort-text -->
     <TextView
         android:id="@+id/tvCurrentCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Kort: ?"
-        android:textSize="32sp"
+        android:textSize="26sp"
         android:textStyle="bold"
-        android:paddingBottom="16dp" />
+        android:paddingBottom="8dp" />
 
-    <!-- النتيجة -->
+    <!-- Poäng -->
     <TextView
         android:id="@+id/tvScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Poäng: 0"
-        android:textSize="18sp"
-        android:paddingBottom="24dp" />
+        android:paddingBottom="16dp" />
 
-    <!-- الأزرار: högre / lägre -->
+    <!-- Bild som visas bara när det är rätt -->
+    <ImageView
+        android:id="@+id/imgCorrect"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:src="@drawable/logo_hogre_lagre"
+        android:contentDescription="Rätt!"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Knappar -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnHigher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Högre" />
+            android:text="Högre"
+            android:layout_marginEnd="16dp" />
 
         <Button
             android:id="@+id/btnLower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lägre"
-            android:layout_marginStart="16dp" />
+            android:text="Lägre" />
     </LinearLayout>
 
 </LinearLayout>

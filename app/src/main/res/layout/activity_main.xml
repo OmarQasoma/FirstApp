@@ -2,23 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:gravity="center_horizontal"
+    android:padding="24dp"
+    android:background="#FFFFFF">
 
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/imgLogoMain"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:src="@drawable/logo_hogre_lagre"
+        android:contentDescription="@string/app_name"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Titel -->
     <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="228dp"
-        android:layout_height="103dp"
-        android:paddingBottom="24dp"
+        android:id="@+id/tvTitleMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Högre eller Lägre"
-        android:textSize="26sp"
-        android:textStyle="bold" />
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:paddingBottom="32dp" />
 
+    <!-- Start-knapp -->
     <Button
         android:id="@+id/btnStartGame"
-        android:layout_width="182dp"
-        android:layout_height="68dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Starta spelet" />
 
 </LinearLayout>
