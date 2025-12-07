@@ -59,9 +59,12 @@
         android:id="@+id/imgCorrect"
         android:layout_width="72dp"
         android:layout_height="72dp"
+        android:src="@drawable/correct_icon"
+        android:contentDescription="Rätt ikon"
+        android:visibility="gone"
         android:layout_marginBottom="16dp"
-        android:background="#73638E"
-        android:visibility="gone" />
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside" />
 
     <!-- Knappar -->
     <LinearLayout
