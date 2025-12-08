@@ -27,7 +27,7 @@
         android:textStyle="bold"
         android:paddingBottom="4dp" />
 
-    <!-- Info-text -->
+    <!-- Info-text in screens -->
 
     <!-- Kort-text -->
     <TextView
