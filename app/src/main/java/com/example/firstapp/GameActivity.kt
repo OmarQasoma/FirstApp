@@ -115,12 +115,12 @@ class GameActivity : AppCompatActivity() {
     private fun showGameOverDialog() {
         AlertDialog.Builder(this)
             .setTitle("Fel!")
-            .setMessage("Din gissning var fel.\nVill du spela igen? Poängen nollställs.")
+            .setMessage("Din gissning var fel.\nVill du spela igen? Poängen nollställs.")  // /n سطر جديد
             .setPositiveButton("Ja") { _, _ ->
                 startNewGame()
             }
             .setNegativeButton("Nej") { dialog, _ ->
-                dialog.dismiss()
+                dialog.dismiss()    // فقط إغلاق النافذة بدون إعادة
             }
             .show()
     }
@@ -128,10 +128,10 @@ class GameActivity : AppCompatActivity() {
     private fun updateCardText() {
         val card = currentCard ?: return
         val valueText = when (card.value) {
-            1 -> "A"
-            11 -> "J"
-            12 -> "Q"
-            13 -> "K"
+            13 -> "A"
+            10 -> "J"
+            11 -> "Q"
+            12 -> "K"
             else -> card.value.toString()
         }
 
