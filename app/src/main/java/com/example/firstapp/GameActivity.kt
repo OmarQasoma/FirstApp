@@ -6,27 +6,27 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AlertDialog // library to show dialog when lose
 import androidx.appcompat.app.AppCompatActivity
 
-enum class Suit {
+enum class Suit {  // نوع الورق
     HEARTS, DIAMONDS, CLUBS, SPADES
 }
 
-data class Card(
-    val value: Int,
-    val suit: Suit
+data class Card( //playing card
+    val value: Int,  // the value of the card, from 1 to 13
+    val suit: Suit  // نوع الورق
 )
 
 class GameActivity : AppCompatActivity() {
 
-    private lateinit var tvCurrentCard: TextView
+    private lateinit var tvCurrentCard: TextView  //  defult value متفير لا يملك قيمة عند التصريح
     private lateinit var tvScore: TextView
     private lateinit var btnHigher: Button
     private lateinit var btnLower: Button
     private lateinit var imgCorrect: ImageView
 
-    private var deck: MutableList<Card> = mutableListOf()
+    private var deck: MutableList<Card> = mutableListOf()  //	متغير له قيمة من البداية
     private var currentIndex = 0
     private var currentCard: Card? = null
     private var score = 0
@@ -41,7 +41,10 @@ class GameActivity : AppCompatActivity() {
         btnLower = findViewById(R.id.btnLower)
         imgCorrect = findViewById(R.id.imgCorrect)
 
-        imgCorrect.visibility = View.GONE
+        imgCorrect.visibility = View.GONE // لاخفاء صورؤ صح
+
+
+
 
         startNewGame()
 
@@ -55,7 +58,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun startNewGame() {
-        deck = mutableListOf()
+        deck = mutableListOf()   // تفريغ القائمة السابقة (لو في لعبة قديمة)
         val suits = Suit.values()
         for (suit in suits) {
             for (value in 1..13) {
@@ -63,19 +66,19 @@ class GameActivity : AppCompatActivity() {
             }
         }
 
-        deck.shuffle()
+        deck.shuffle() // تخلط الأوراق
 
         score = 0
         currentIndex = 0
         currentCard = deck[currentIndex]
 
-        imgCorrect.visibility = View.GONE
+        imgCorrect.visibility = View.GONE // لاخفاء صورؤ صح
 
         updateScoreText()
         updateCardText()
     }
 
-    private fun handleGuess(isHigher: Boolean) {
+    private fun handleGuess(isHigher: Boolean) {   // master function (head of logic hhh)
         val previousCard = currentCard ?: return
 
         if (currentIndex >= deck.size - 1) {
@@ -84,9 +87,12 @@ class GameActivity : AppCompatActivity() {
             return
         }
 
-        currentIndex++
+
+
+
+        currentIndex++   // Next card in the deck
         val nextCard = deck[currentIndex]
-        currentCard = nextCard
+        currentCard = nextCard   //		نخليه هو currentCard الآن
 
         val guessIsCorrect = if (isHigher) {
             nextCard.value > previousCard.value
@@ -97,7 +103,7 @@ class GameActivity : AppCompatActivity() {
         if (guessIsCorrect) {
             score++
             imgCorrect.visibility = View.VISIBLE
-            //      Toast.makeText(this, "Rätt! 🎉", Toast.LENGTH_SHORT).show()
+            // Toast.makeText(this, "Rätt! 🎉", Toast.LENGTH_SHORT).show()
             updateScoreText()
             updateCardText()
         } else {
